@@ -10,6 +10,16 @@
 
 VS Code already lets you download remote files manually. This extension removes the extra step when you just want to open a remote HTML artifact in your local browser.
 
+## Installation
+
+Install the extension from the VS Code Marketplace once it is published.
+
+Until then, install the packaged `.vsix` from GitHub Actions or a GitHub Release:
+
+1. Download the `.vsix` file
+2. In VS Code, run `Extensions: Install from VSIX...`
+3. Select the downloaded file
+
 ## How it works
 
 - The extension runs as a local `ui` extension
@@ -33,6 +43,8 @@ You can also run the command from the Command Palette.
 - If the page depends on adjacent assets through relative paths, those assets are not downloaded automatically.
 
 ## Development
+
+This section is only for maintainers working on the extension source.
 
 ```bash
 npm install
