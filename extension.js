@@ -28,7 +28,7 @@ async function pickLocalTarget(outputDir, fileName) {
 }
 
 function getOutputDir() {
-  if (process.platform === "linux") {
+  if (process.platform !== "darwin") {
     return vscode.Uri.file(path.join(os.tmpdir(), "remote-html-to-chrome"));
   }
 
