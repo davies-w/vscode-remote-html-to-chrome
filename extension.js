@@ -6,6 +6,26 @@ const { promisify } = require("util");
 
 const execFileAsync = promisify(execFile);
 
+async function pickLocalTarget(outputDir, fileName) {
+  const parsed = path.parse(fileName || "index.html");
+
+  for (let attempt = 0; attempt < 1000; attempt += 1) {
+    const suffix = attempt === 0 ? "" : `-${attempt + 1}`;
+    const candidate = vscode.Uri.joinPath(
+      outputDir,
+      `${parsed.name || "index"}${suffix}${parsed.ext || ".html"}`
+    );
+
+    try {
+      await vscode.workspace.fs.stat(candidate);
+    } catch {
+      return candidate;
+    }
+  }
+
+  throw new Error("Could not find an available local filename.");
+}
+
 async function downloadAndOpen(resource) {
   const target = resource || vscode.window.activeTextEditor?.document?.uri;
   if (!target) {
@@ -23,10 +43,8 @@ async function downloadAndOpen(resource) {
   const outputDir = vscode.Uri.file(path.join(os.homedir(), "Downloads", "remote-html-to-chrome"));
   await vscode.workspace.fs.createDirectory(outputDir);
 
-  const stamp = new Date().toISOString().replace(/[:.]/g, "-");
-  const host = (target.authority || "local").replace(/[^\w.-]+/g, "_");
-  const localName = `${host}-${stamp}-${fileName || "index.html"}`;
-  const localFile = vscode.Uri.joinPath(outputDir, localName);
+  const localFile = await pickLocalTarget(outputDir, fileName);
+  const localName = path.basename(localFile.fsPath);
 
   await vscode.workspace.fs.writeFile(localFile, bytes);
 
