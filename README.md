@@ -14,11 +14,32 @@ VS Code already lets you download remote files manually. This extension removes 
 
 Install the extension from the VS Code Marketplace once it is published.
 
-Until then, install the packaged `.vsix` from GitHub Actions or a GitHub Release:
+Until then, install it from the latest GitHub Release.
 
-1. Download the `.vsix` file
+### One-command install
+
+macOS and Linux:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/davies-w/vscode-remote-html-to-chrome/main/scripts/install.sh | bash
+```
+
+Windows PowerShell:
+
+```powershell
+irm https://raw.githubusercontent.com/davies-w/vscode-remote-html-to-chrome/main/scripts/install.ps1 | iex
+```
+
+### Manual install
+
+1. Download `remote-html-to-chrome-latest.vsix` from the latest GitHub Release.
 2. In VS Code, run `Extensions: Install from VSIX...`
 3. Select the downloaded file
+
+### Notes for installers
+
+- The scripts install the latest GitHub Release, not the live `main` branch.
+- The scripts need the VS Code CLI. If `code` is not on your path, set `CODE_COMMAND` to the CLI path.
 
 ## How it works
 
@@ -58,6 +79,8 @@ Then install the generated `.vsix` in VS Code with `Extensions: Install from VSI
 ## Publishing
 
 Marketplace publishing is documented in [PUBLISHING.md](PUBLISHING.md).
+
+GitHub Releases also attach a `.vsix` asset so people can install the extension before it is on the Marketplace.
 
 ## License
 

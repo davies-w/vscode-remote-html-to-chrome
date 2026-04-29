@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VSCE_PAT: ${{ secrets.VSCE_PAT }}
+      GH_TOKEN: ${{ github.token }}
     steps:
       - name: Check out
         uses: actions/checkout@v4
@@ -24,6 +25,16 @@ jobs:
 
       - name: Package extension
         run: npx @vscode/vsce package
+
+      - name: Prepare release assets
+        run: |
+          VSIX_FILE="$(ls *.vsix)"
+          cp "$VSIX_FILE" remote-html-to-chrome-latest.vsix
+          printf 'VSIX_FILE=%s\n' "$VSIX_FILE" >> "$GITHUB_ENV"
+
+      - name: Upload VSIX files to GitHub Release
+        run: |
+          gh release upload "${{ github.event.release.tag_name }}" "$VSIX_FILE" remote-html-to-chrome-latest.vsix --clobber
 
       - name: Upload VSIX
         uses: actions/upload-artifact@v4
