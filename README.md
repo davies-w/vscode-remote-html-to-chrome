@@ -24,7 +24,7 @@ Until then, install the packaged `.vsix` from GitHub Actions or a GitHub Release
 
 - The extension runs as a local `ui` extension
 - It uses `vscode.workspace.fs` to read the selected remote file
-- It writes the file to `~/Downloads/buzz-html`
+- It writes the file to `~/Downloads/remote-html-to-chrome`
 - On macOS, it launches `open -a "Google Chrome"` for the downloaded file
 
 On non-macOS platforms, it falls back to the default external opener.

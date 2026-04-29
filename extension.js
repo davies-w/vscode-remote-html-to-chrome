@@ -20,7 +20,7 @@ async function downloadAndOpen(resource) {
   }
 
   const bytes = await vscode.workspace.fs.readFile(target);
-  const outputDir = vscode.Uri.file(path.join(os.homedir(), "Downloads", "buzz-html"));
+  const outputDir = vscode.Uri.file(path.join(os.homedir(), "Downloads", "remote-html-to-chrome"));
   await vscode.workspace.fs.createDirectory(outputDir);
 
   const stamp = new Date().toISOString().replace(/[:.]/g, "-");
