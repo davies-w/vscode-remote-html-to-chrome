@@ -24,11 +24,12 @@ Until then, install the packaged `.vsix` from GitHub Actions or a GitHub Release
 
 - The extension runs as a local `ui` extension
 - It uses `vscode.workspace.fs` to read the selected remote file
-- It writes the file to `~/Downloads/remote-html-to-chrome`
+- It writes the file to `~/Downloads/remote-html-to-chrome` on macOS and Windows
+- It writes the file to `/tmp/remote-html-to-chrome` on Linux
 - It preserves the original filename, adding `-2`, `-3`, and so on only when needed to avoid overwriting an existing file
-- On macOS, it launches `open -a "Google Chrome"` for the downloaded file
+- It tries to launch Google Chrome on macOS, Windows, and Linux
 
-On non-macOS platforms, it falls back to the default external opener.
+If Chrome is not available, it falls back to the default external opener for the platform.
 
 ## Usage
 
