@@ -1,0 +1,60 @@
+{
+  "name": "remote-html-to-chrome",
+  "displayName": "Remote HTML to Chrome",
+  "description": "Download a remote HTML file to the local machine and open it in Google Chrome.",
+  "version": "0.1.0",
+  "publisher": "davies-w",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.70.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "remote",
+    "ssh",
+    "html",
+    "chrome",
+    "download"
+  ],
+  "extensionKind": [
+    "ui"
+  ],
+  "activationEvents": [
+    "onCommand:remoteHtmlToChrome.downloadAndOpen"
+  ],
+  "main": "./extension.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davies-w/vscode-remote-html-to-chrome.git"
+  },
+  "homepage": "https://github.com/davies-w/vscode-remote-html-to-chrome#readme",
+  "bugs": {
+    "url": "https://github.com/davies-w/vscode-remote-html-to-chrome/issues"
+  },
+  "scripts": {
+    "package": "vsce package",
+    "publish:marketplace": "vsce publish"
+  },
+  "devDependencies": {
+    "@vscode/vsce": "^3.6.2"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "remoteHtmlToChrome.downloadAndOpen",
+        "title": "Download and Open in Chrome"
+      }
+    ],
+    "menus": {
+      "explorer/context": [
+        {
+          "command": "remoteHtmlToChrome.downloadAndOpen",
+          "when": "explorerResourceIsFolder == false && (resourceExtname == .html || resourceExtname == .htm)",
+          "group": "navigation@50"
+        }
+      ]
+    }
+  }
+}
