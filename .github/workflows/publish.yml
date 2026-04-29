@@ -37,7 +37,7 @@ jobs:
           path: "*.vsix"
 
       - name: Publish to Marketplace
-        if: ${{ (github.event_name == 'release' || inputs.publish_to_marketplace) && secrets.VSCE_PAT != '' }}
+        if: ${{ (github.event_name == 'release' || github.event.inputs.publish_to_marketplace == 'true') && secrets.VSCE_PAT != '' }}
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
         run: npx @vscode/vsce publish -p "$VSCE_PAT"
