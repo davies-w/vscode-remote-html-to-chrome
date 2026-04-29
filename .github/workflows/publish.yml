@@ -1,13 +1,6 @@
 name: Publish
 
 on:
-  workflow_dispatch:
-    inputs:
-      publish_to_marketplace:
-        description: Publish to the VS Code Marketplace using VSCE_PAT
-        required: true
-        type: boolean
-        default: false
   release:
     types:
       - published
@@ -37,7 +30,7 @@ jobs:
           path: "*.vsix"
 
       - name: Publish to Marketplace
-        if: ${{ (github.event_name == 'release' || github.event.inputs.publish_to_marketplace == 'true') && secrets.VSCE_PAT != '' }}
+        if: ${{ secrets.VSCE_PAT != '' }}
         env:
           VSCE_PAT: ${{ secrets.VSCE_PAT }}
         run: npx @vscode/vsce publish -p "$VSCE_PAT"

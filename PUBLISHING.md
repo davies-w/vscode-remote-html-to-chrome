@@ -15,7 +15,7 @@ This repository is wired so GitHub Actions can package and publish the extension
 
 1. Bump `version` in `package.json`.
 2. Update `CHANGELOG.md`.
-3. Create a GitHub Release, or run the `Publish` workflow manually.
+3. Create a GitHub Release.
 4. The workflow packages the extension as a `.vsix`.
 5. If `VSCE_PAT` is configured, it publishes the current version to the VS Code Marketplace.
 
