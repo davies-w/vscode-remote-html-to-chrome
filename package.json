@@ -2,7 +2,7 @@
   "name": "remote-html-to-chrome",
   "displayName": "Remote HTML to Chrome",
   "description": "Download a remote HTML file to the local machine and open it in Google Chrome.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "publisher": "davies-w",
   "license": "MIT",
   "engines": {
